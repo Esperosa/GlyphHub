@@ -1,0 +1,110 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">GlyphHub hero banner</title>
+  <desc id="desc">Dark red and black project banner for GlyphHub with a stylized Nothing Glyph Matrix panel.</desc>
+  <defs>
+    <linearGradient id="bg" x1="120" y1="40" x2="1120" y2="620" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#050505"/>
+      <stop offset="0.58" stop-color="#120809"/>
+      <stop offset="1" stop-color="#2A0E10"/>
+    </linearGradient>
+    <radialGradient id="glowLeft" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(290 190) rotate(47.9) scale(390 310)">
+      <stop stop-color="#FF5A5F" stop-opacity="0.38"/>
+      <stop offset="1" stop-color="#FF5A5F" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowRight" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(998 250) rotate(90) scale(260 260)">
+      <stop stop-color="#FF3D43" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#FF3D43" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="panelStroke" x1="786" y1="104" x2="1130" y2="536" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#787878" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.08"/>
+    </linearGradient>
+    <pattern id="matrixPattern" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="12" cy="12" r="4.5" fill="#FF6A6F" fill-opacity="0.18"/>
+      <circle cx="12" cy="12" r="2" fill="#FFD7D8" fill-opacity="0.32"/>
+    </pattern>
+    <clipPath id="panelClip">
+      <rect x="792" y="120" width="336" height="400" rx="36"/>
+    </clipPath>
+    <mask id="matrixMask">
+      <rect width="1280" height="640" fill="black"/>
+      <circle cx="960" cy="320" r="166" fill="white"/>
+    </mask>
+    <filter id="softBlur" x="0" y="0" width="1280" height="640" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="640" rx="32" fill="url(#bg)"/>
+  <circle cx="260" cy="190" r="280" fill="url(#glowLeft)"/>
+  <circle cx="1000" cy="246" r="220" fill="url(#glowRight)"/>
+
+  <g opacity="0.22">
+    <path d="M0 520C120 480 202 446 300 446C440 446 516 548 664 548C794 548 840 462 964 462C1070 462 1152 510 1280 566V640H0V520Z" fill="#D32F2F"/>
+  </g>
+
+  <g opacity="0.17">
+    <circle cx="154" cy="514" r="4" fill="#FFFFFF"/>
+    <circle cx="212" cy="544" r="4" fill="#FFFFFF"/>
+    <circle cx="258" cy="498" r="4" fill="#FFFFFF"/>
+    <circle cx="304" cy="536" r="4" fill="#FFFFFF"/>
+    <circle cx="348" cy="490" r="4" fill="#FFFFFF"/>
+    <circle cx="1102" cy="126" r="4" fill="#FFFFFF"/>
+    <circle cx="1150" cy="162" r="4" fill="#FFFFFF"/>
+    <circle cx="1060" cy="176" r="4" fill="#FFFFFF"/>
+  </g>
+
+  <text x="96" y="166" fill="#F8F8F8" font-family="Segoe UI, Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="1.2">GlyphHub</text>
+  <text x="96" y="224" fill="#FFB3B6" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="600">Nothing Glyph Matrix hub built around one service-owned render pipeline</text>
+  <text x="96" y="284" fill="#EEE7E8" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="400">Official Toy service integration, Compose UI, widget control, 13x13 design system,</text>
+  <text x="96" y="322" fill="#EEE7E8" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="400">audio and sensor modules, asset tooling foundations, and honest progress tracking.</text>
+
+  <g>
+    <rect x="96" y="384" width="198" height="44" rx="22" fill="#151515" stroke="#742326"/>
+    <text x="124" y="413" fill="#FFD9DA" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="600">Android 14+</text>
+
+    <rect x="310" y="384" width="196" height="44" rx="22" fill="#151515" stroke="#742326"/>
+    <text x="338" y="413" fill="#FFD9DA" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="600">Kotlin 2.0.21</text>
+
+    <rect x="96" y="444" width="222" height="44" rx="22" fill="#151515" stroke="#742326"/>
+    <text x="124" y="473" fill="#FFD9DA" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="600">27 modules in code</text>
+
+    <rect x="334" y="444" width="250" height="44" rx="22" fill="#151515" stroke="#742326"/>
+    <text x="362" y="473" fill="#FFD9DA" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="600">A069P smoke tested</text>
+  </g>
+
+  <g>
+    <rect x="760" y="88" width="400" height="464" rx="56" fill="#0C0C0D" stroke="url(#panelStroke)" stroke-width="2"/>
+    <rect x="792" y="120" width="336" height="400" rx="36" fill="#111113" stroke="#252528"/>
+    <g clip-path="url(#panelClip)">
+      <rect x="792" y="120" width="336" height="400" fill="url(#matrixPattern)" mask="url(#matrixMask)"/>
+    </g>
+    <circle cx="960" cy="320" r="172" stroke="#3C3C41" stroke-width="2"/>
+    <circle cx="960" cy="320" r="148" stroke="#26262A" stroke-width="1.5" stroke-dasharray="4 10"/>
+    <circle cx="960" cy="320" r="102" fill="#FF4A50" fill-opacity="0.12" filter="url(#softBlur)"/>
+
+    <g>
+      <circle cx="960" cy="180" r="8" fill="#FFD0D2"/>
+      <circle cx="1034" cy="202" r="8" fill="#FFD0D2"/>
+      <circle cx="1088" cy="256" r="8" fill="#FFD0D2"/>
+      <circle cx="1108" cy="320" r="8" fill="#FFD0D2"/>
+      <circle cx="1088" cy="384" r="8" fill="#FFD0D2"/>
+      <circle cx="1034" cy="438" r="8" fill="#FFD0D2"/>
+      <circle cx="960" cy="460" r="8" fill="#FFD0D2"/>
+      <circle cx="886" cy="438" r="8" fill="#FFD0D2"/>
+      <circle cx="832" cy="384" r="8" fill="#FFD0D2"/>
+      <circle cx="812" cy="320" r="8" fill="#FFD0D2"/>
+      <circle cx="832" cy="256" r="8" fill="#FFD0D2"/>
+      <circle cx="886" cy="202" r="8" fill="#FFD0D2"/>
+      <circle cx="960" cy="320" r="10" fill="#FFFFFF"/>
+      <circle cx="960" cy="248" r="8" fill="#FFE4E5"/>
+      <circle cx="1008" cy="288" r="8" fill="#FFE4E5"/>
+      <circle cx="1008" cy="352" r="8" fill="#FFE4E5"/>
+      <circle cx="960" cy="392" r="8" fill="#FFE4E5"/>
+      <circle cx="912" cy="352" r="8" fill="#FFE4E5"/>
+      <circle cx="912" cy="288" r="8" fill="#FFE4E5"/>
+    </g>
+  </g>
+
+  <text x="796" y="584" fill="#8F8F95" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500">Service-first Matrix control • Circular-safe 13x13 visuals • Honest progress</text>
+</svg>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GlyphHub</string>
+    <string name="glyph_toy_summary">Modular Glyph Matrix toy hub for Nothing Phone 4a Pro.</string>
+    <string name="widget_description">GlyphHub toy carousel</string>
+</resources>

@@ -1,0 +1,32 @@
+{
+  "matrix": 13,
+  "device": "Glyph.DEVICE_25111p",
+  "assets": [
+    "dice/dice_1.json",
+    "dice/dice_2.json",
+    "dice/dice_3.json",
+    "dice/dice_4.json",
+    "dice/dice_5.json",
+    "dice/dice_6.json",
+    "coin/coin_heads.json",
+    "coin/coin_tails.json",
+    "compass/compass_arrow_n.json",
+    "compass/compass_arrow_e.json",
+    "clock/clock_idle.json",
+    "battery/battery_icon.json",
+    "idle/default_idle.json",
+    "text/text_scroll.json"
+  ],
+  "transitions": [
+    "transitions/appear_from_center.json",
+    "transitions/disappear_to_center.json",
+    "transitions/scanline_in.json",
+    "transitions/scanline_out.json",
+    "transitions/pixel_burst_in.json",
+    "transitions/pixel_burst_out.json",
+    "transitions/fade_in.json",
+    "transitions/fade_out.json",
+    "transitions/glitch_in.json",
+    "transitions/glitch_out.json"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "GlyphHub: build debug",
+      "type": "shell",
+      "command": "pwsh",
+      "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/scripts/build-debug.ps1"],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "GlyphHub: install debug",
+      "type": "shell",
+      "command": "pwsh",
+      "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/scripts/install-debug.ps1", "-Serial", "${input:adbSerial}"],
+      "problemMatcher": []
+    },
+    {
+      "label": "GlyphHub: device check",
+      "type": "shell",
+      "command": "pwsh",
+      "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/scripts/device-check.ps1", "-Serial", "${input:adbSerial}"],
+      "problemMatcher": []
+    },
+    {
+      "label": "GlyphHub: logcat",
+      "type": "shell",
+      "command": "pwsh",
+      "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/scripts/logcat-glyphhub.ps1", "-Serial", "${input:adbSerial}"],
+      "problemMatcher": []
+    },
+    {
+      "label": "GlyphHub: launch app",
+      "type": "shell",
+      "command": "pwsh",
+      "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/scripts/launch-app.ps1", "-Serial", "${input:adbSerial}"],
+      "problemMatcher": []
+    },
+    {
+      "label": "GlyphHub: smoke test device",
+      "type": "shell",
+      "command": "pwsh",
+      "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/scripts/smoke-test-device.ps1", "-Serial", "${input:adbSerial}"],
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "adbSerial",
+      "type": "promptString",
+      "description": "ADB serial of the target Nothing Phone (4a) Pro"
+    }
+  ]
+}
