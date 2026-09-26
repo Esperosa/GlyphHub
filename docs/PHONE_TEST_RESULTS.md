@@ -4,8 +4,7 @@ Baseline captured on 2026-06-06 against the currently connected authorized devic
 
 ## Device inventory
 
-- Authorized target: serial `003203627001082`
-- Secondary device present but ignored: `P2129L001981` (`unauthorized`)
+- Authorized target: Nothing Phone (4a) Pro
 - Manufacturer: `Nothing`
 - Model: `A069P`
 - Device codename: `FroggerPro`
@@ -16,11 +15,11 @@ Baseline captured on 2026-06-06 against the currently connected authorized devic
 1. `./gradlew.bat :app:compileDebugKotlin`
 2. `./gradlew.bat assembleDebug`
 3. `Get-Content ./todos.json -Raw | ConvertFrom-Json | Out-Null`
-4. `pwsh -NoProfile -ExecutionPolicy Bypass -File ./scripts/device-check.ps1 -Serial 003203627001082`
-5. `pwsh -NoProfile -ExecutionPolicy Bypass -File ./scripts/install-debug.ps1 -Serial 003203627001082`
-6. `pwsh -NoProfile -ExecutionPolicy Bypass -File ./scripts/logcat-glyphhub.ps1 -Serial 003203627001082`
-7. `pwsh -NoProfile -ExecutionPolicy Bypass -File ./scripts/launch-app.ps1 -Serial 003203627001082`
-8. `adb -s 003203627001082 shell monkey -p com.pelikan.glyphhub 1`
+4. `pwsh -NoProfile -ExecutionPolicy Bypass -File ./scripts/device-check.ps1 -Serial <serial>`
+5. `pwsh -NoProfile -ExecutionPolicy Bypass -File ./scripts/install-debug.ps1 -Serial <serial>`
+6. `pwsh -NoProfile -ExecutionPolicy Bypass -File ./scripts/logcat-glyphhub.ps1 -Serial <serial>`
+7. `pwsh -NoProfile -ExecutionPolicy Bypass -File ./scripts/launch-app.ps1 -Serial <serial>`
+8. `adb -s <serial> shell monkey -p com.pelikan.glyphhub 1`
 
 ## Verified results
 
@@ -39,7 +38,7 @@ Additional commands executed after the larger code change set:
 1. `./gradlew.bat :app:compileDebugKotlin` after the first new-Toy batch
 2. `./gradlew.bat :app:compileDebugKotlin` after the second new-Toy batch
 3. `./gradlew.bat :app:compileDebugKotlin` after the Pixel Art / Text Scroll / transition-UI truthfulness patch
-4. `pwsh -NoProfile -ExecutionPolicy Bypass -File ./scripts/smoke-test-device.ps1 -Serial 003203627001082`
+4. `pwsh -NoProfile -ExecutionPolicy Bypass -File ./scripts/smoke-test-device.ps1 -Serial <serial>`
 5. fresh filtered `logcat-glyphhub` capture during the smoke-script install and launch
 
 Retest results:
@@ -92,8 +91,8 @@ Additional commands executed after the widget renderer and Tuner changes:
 
 1. `./gradlew.bat assembleDebug`
 2. `Get-Content ./todos.json -Raw | ConvertFrom-Json | Out-Null`
-3. `adb -s 003203627001082 install -r app/build/outputs/apk/debug/app-debug.apk`
-4. `adb -s 003203627001082 shell am start -n com.pelikan.glyphhub/.MainActivity`
+3. `adb -s <serial> install -r app/build/outputs/apk/debug/app-debug.apk`
+4. `adb -s <serial> shell am start -n com.pelikan.glyphhub/.MainActivity`
 5. Debug activation/deactivation intents for `dice` and `tuner`
 6. Temporary fake-fallback build with `app/libs/glyph-matrix-sdk-2.0.aar` renamed out of the Gradle `libs` tree, then restored
 
@@ -121,7 +120,7 @@ Results:
 Additional commands executed after the circular widget/Toy visual pass:
 
 1. `./gradlew.bat assembleDebug`
-2. `adb -s 003203627001082 install -r app/build/outputs/apk/debug/app-debug.apk`
+2. `adb -s <serial> install -r app/build/outputs/apk/debug/app-debug.apk`
 3. Debug activation/deactivation intents for `dice`, `battery`, `compass`, and `clock`
 4. A temporary fake-fallback build with `app/libs/glyph-matrix-sdk-2.0.aar` moved out of `app/libs`, then restored
 
@@ -146,7 +145,7 @@ The current build is installable and launchable on the authorized Nothing `A069P
 Additional work and tests after the UI/preview pass:
 
 1. `./gradlew.bat assembleDebug`
-2. `adb -s 003203627001082 install -r app/build/outputs/apk/debug/app-debug.apk`
+2. `adb -s <serial> install -r app/build/outputs/apk/debug/app-debug.apk`
 3. Sequential debug activation/deactivation smoke for every registry Toy except `idle_default`: `dice`, `coin`, `rps`, `timer`, `school_class_timer`, `level`, `lux_meter`, `compass`, `tuner`, `clock`, `battery`, `eye`, `maze`, `weather`, `pixel_art`, and `text_scroll`
 4. UIAutomator launcher dump from the page containing the GlyphHub widget
 5. Physical ADB taps against live widget bounds:
@@ -180,9 +179,9 @@ Still not fully provable through ADB:
 Additional commands after the preview-size and icon-pattern fix:
 
 1. `./gradlew.bat assembleDebug`
-2. `adb -s 003203627001082 install -r app/build/outputs/apk/debug/app-debug.apk`
-3. `adb -s 003203627001082 shell am force-stop com.pelikan.glyphhub`
-4. `adb -s 003203627001082 shell monkey -p com.pelikan.glyphhub 1`
+2. `adb -s <serial> install -r app/build/outputs/apk/debug/app-debug.apk`
+3. `adb -s <serial> shell am force-stop com.pelikan.glyphhub`
+4. `adb -s <serial> shell monkey -p com.pelikan.glyphhub 1`
 5. Launcher and app screenshots captured with `adb exec-out screencap -p`
 6. UIAutomator dump from the launcher page containing the 2x2 GlyphHub widget
 7. Physical ADB tap on the widget bottom zone, followed by a top-zone tap to return the carousel to the previous Toy
@@ -208,8 +207,8 @@ Additional commands after the requested full-list audit and object-specific prev
 1. `Get-Content ./todos.json -Raw | ConvertFrom-Json | Out-Null`
 2. `./gradlew.bat assembleDebug`
 3. Registry-to-preview coverage check for every registered `ToyRegistry` module id
-4. `adb -s 003203627001082 install -r app/build/outputs/apk/debug/app-debug.apk`
-5. `adb -s 003203627001082 shell monkey -p com.pelikan.glyphhub 1`
+4. `adb -s <serial> install -r app/build/outputs/apk/debug/app-debug.apk`
+5. `adb -s <serial> shell monkey -p com.pelikan.glyphhub 1`
 6. App and launcher screenshots captured with `adb exec-out screencap -p`
 
 Results:
@@ -229,8 +228,8 @@ Results:
 Additional commands after the animation-radius and PixelArt icon/editor pass:
 
 1. `.\gradlew.bat assembleDebug`
-2. `adb -s 003203627001082 install -r app/build/outputs/apk/debug/app-debug.apk`
-3. `adb -s 003203627001082 shell am start -n com.pelikan.glyphhub/.MainActivity`
+2. `adb -s <serial> install -r app/build/outputs/apk/debug/app-debug.apk`
+3. `adb -s <serial> shell am start -n com.pelikan.glyphhub/.MainActivity`
 4. UIAutomator dump and ADB taps to enable `AOD` and `Sensors` from the Home screen.
 5. Debug activation intents for `compass`, `level`, `lux_meter`, `dice`, `coin`, and hidden `maze`.
 6. SharedPreferences test setup for `defaultDisplayMode=battery`, followed by debug `sync`.
@@ -244,7 +243,7 @@ Results:
 - `assembleDebug` passed.
 - `assembleDebug` passed both with the real Nothing SDK AAR present and with the AAR temporarily absent.
 - APK reinstall returned `Success`.
-- Device remained the intended target: `003203627001082`, `A069P`, `FroggerPro`.
+- Device remained the intended target: Nothing Phone (4a) Pro (`A069P`, `FroggerPro`).
 - Manifest registration still exposes one official `com.nothing.glyph.TOY` service: `com.pelikan.glyphhub/.glyph.GlyphHubToyService`.
 - `sensorsEnabled=true` and `aodEnabled=true` were confirmed in app SharedPreferences before sensor/default-display tests.
 - Sensor smoke results:
@@ -294,7 +293,7 @@ Results:
 - `:app:compileDebugKotlin`: passed.
 - `assembleDebug`: passed.
 - `todos.json` parse validation: passed.
-- Authorized target remained available: `003203627001082 device`.
+- Authorized target (Nothing Phone (4a) Pro) remained available in `adb devices`.
 - `installDebug`: passed; Gradle installed `app-debug.apk` on `A069P - 16`.
 - `monkey -p com.pelikan.glyphhub 1`: passed; one launch event injected.
 - Filtered GlyphHub/Nothing logcat showed service package replacement and `GlyphToyController` re-registration of `com.pelikan.glyphhub/.glyph.GlyphHubToyService`.
@@ -325,15 +324,15 @@ Commands executed after Battery renderer repair:
 2. `.\scripts\device-check.ps1`
 3. `adb devices -l`
 4. `adb shell dumpsys battery`
-5. `.\scripts\install-debug.ps1 -Serial 003203627001082`
-6. `adb -s 003203627001082 shell am start -n com.pelikan.glyphhub/.MainActivity -a com.pelikan.glyphhub.DEBUG_COMMAND --es command activate --es toyId battery`
-7. `adb -s 003203627001082 logcat -d -s GlyphHub`
+5. `.\scripts\install-debug.ps1 -Serial <serial>`
+6. `adb -s <serial> shell am start -n com.pelikan.glyphhub/.MainActivity -a com.pelikan.glyphhub.DEBUG_COMMAND --es command activate --es toyId battery`
+7. `adb -s <serial> logcat -d -s GlyphHub`
 
 Results:
 
 - Build passed.
 - Install passed.
-- Target remained `003203627001082`, `A069P`, `FroggerPro`.
+- Target remained Nothing Phone (4a) Pro (`A069P`, `FroggerPro`).
 - Battery service state before activation: `level=77`, `USB powered=true`, `status=2`.
 - Logcat confirmed `sdkMode=real`, `Real Glyph SDK service connected registered=true`, and `activated toy=battery`.
 - Battery Toy was left active on the phone for direct visual inspection.
@@ -374,11 +373,11 @@ Third follow-up tuning for native charging override:
 Commands executed:
 
 1. `.\scripts\build-debug.ps1`
-2. `.\scripts\install-debug.ps1 -Serial 003203627001082`
-3. `adb -s 003203627001082 shell dumpsys battery`
-4. `adb -s 003203627001082 shell am start -n com.pelikan.glyphhub/.MainActivity -a com.pelikan.glyphhub.DEBUG_COMMAND --es command activate --es toyId dice`
-5. `adb -s 003203627001082 shell am start -n com.pelikan.glyphhub/.MainActivity -a com.pelikan.glyphhub.DEBUG_COMMAND --es command sync`
-6. `adb -s 003203627001082 logcat -d -s GlyphHub`
+2. `.\scripts\install-debug.ps1 -Serial <serial>`
+3. `adb -s <serial> shell dumpsys battery`
+4. `adb -s <serial> shell am start -n com.pelikan.glyphhub/.MainActivity -a com.pelikan.glyphhub.DEBUG_COMMAND --es command activate --es toyId dice`
+5. `adb -s <serial> shell am start -n com.pelikan.glyphhub/.MainActivity -a com.pelikan.glyphhub.DEBUG_COMMAND --es command sync`
+6. `adb -s <serial> logcat -d -s GlyphHub`
 
 Results:
 
@@ -401,16 +400,16 @@ Fourth follow-up tuning for immediate charging response:
 Commands executed:
 
 1. `.\scripts\build-debug.ps1`
-2. `.\scripts\install-debug.ps1 -Serial 003203627001082`
-3. `adb -s 003203627001082 shell dumpsys battery`
-4. `adb -s 003203627001082 shell am start -n com.pelikan.glyphhub/.MainActivity -a com.pelikan.glyphhub.DEBUG_COMMAND --es command activate --es toyId dice`
-5. `adb -s 003203627001082 shell dumpsys battery unplug`
-6. `adb -s 003203627001082 shell dumpsys battery set usb 0`
-7. `adb -s 003203627001082 shell dumpsys battery set status 3`
-8. `adb -s 003203627001082 shell dumpsys battery set usb 1`
-9. `adb -s 003203627001082 shell dumpsys battery set status 2`
-10. `adb -s 003203627001082 shell dumpsys battery reset`
-11. `adb -s 003203627001082 logcat -d -s GlyphHub`
+2. `.\scripts\install-debug.ps1 -Serial <serial>`
+3. `adb -s <serial> shell dumpsys battery`
+4. `adb -s <serial> shell am start -n com.pelikan.glyphhub/.MainActivity -a com.pelikan.glyphhub.DEBUG_COMMAND --es command activate --es toyId dice`
+5. `adb -s <serial> shell dumpsys battery unplug`
+6. `adb -s <serial> shell dumpsys battery set usb 0`
+7. `adb -s <serial> shell dumpsys battery set status 3`
+8. `adb -s <serial> shell dumpsys battery set usb 1`
+9. `adb -s <serial> shell dumpsys battery set status 2`
+10. `adb -s <serial> shell dumpsys battery reset`
+11. `adb -s <serial> logcat -d -s GlyphHub`
 
 Results:
 
@@ -436,10 +435,10 @@ Commands executed:
 
 1. `.\gradlew.bat :app:testDebugUnitTest --no-configuration-cache`
 2. `.\scripts\build-debug.ps1`
-3. `.\scripts\install-debug.ps1 -Serial 003203627001082`
-4. `adb -s 003203627001082 shell am start ... --es command set_toy_setting --es toyId tuner --es key simulationMode --es value demo_lock`
-5. `adb -s 003203627001082 shell am start ... --es command activate --es toyId tuner`
-6. `adb -s 003203627001082 logcat -d | findstr /i /c:"FATAL EXCEPTION"`
+3. `.\scripts\install-debug.ps1 -Serial <serial>`
+4. `adb -s <serial> shell am start ... --es command set_toy_setting --es toyId tuner --es key simulationMode --es value demo_lock`
+5. `adb -s <serial> shell am start ... --es command activate --es toyId tuner`
+6. `adb -s <serial> logcat -d | findstr /i /c:"FATAL EXCEPTION"`
 
 Results:
 
@@ -462,10 +461,10 @@ Commands executed:
 
 1. `.\gradlew.bat :app:testDebugUnitTest --no-configuration-cache`
 2. `.\scripts\build-debug.ps1`
-3. `.\scripts\install-debug.ps1 -Serial 003203627001082`
-4. `adb -s 003203627001082 shell am start ... --es command set_toy_setting --es toyId tuner --es key simulationMode --es value demo_all`
-5. `adb -s 003203627001082 shell am start ... --es command activate --es toyId tuner`
-6. `adb -s 003203627001082 logcat -d | findstr /i /c:"FATAL EXCEPTION"`
+3. `.\scripts\install-debug.ps1 -Serial <serial>`
+4. `adb -s <serial> shell am start ... --es command set_toy_setting --es toyId tuner --es key simulationMode --es value demo_all`
+5. `adb -s <serial> shell am start ... --es command activate --es toyId tuner`
+6. `adb -s <serial> logcat -d | findstr /i /c:"FATAL EXCEPTION"`
 
 Results:
 
@@ -489,11 +488,11 @@ Commands executed:
 
 1. `.\gradlew.bat :app:testDebugUnitTest --no-configuration-cache`
 2. `.\scripts\build-debug.ps1`
-3. `.\scripts\install-debug.ps1 -Serial 003203627001082`
-4. `adb -s 003203627001082 shell am start ... --es command set_toy_setting --es toyId tuner --es key simulationMode --es value demo_all`
-5. `adb -s 003203627001082 shell am start ... --es command activate --es toyId tuner`
-6. `adb -s 003203627001082 logcat -d -s GlyphHub AndroidRuntime AudioRecord`
-7. `adb -s 003203627001082 logcat -d | findstr /i /c:"FATAL EXCEPTION"`
+3. `.\scripts\install-debug.ps1 -Serial <serial>`
+4. `adb -s <serial> shell am start ... --es command set_toy_setting --es toyId tuner --es key simulationMode --es value demo_all`
+5. `adb -s <serial> shell am start ... --es command activate --es toyId tuner`
+6. `adb -s <serial> logcat -d -s GlyphHub AndroidRuntime AudioRecord`
+7. `adb -s <serial> logcat -d | findstr /i /c:"FATAL EXCEPTION"`
 
 Results:
 
@@ -515,11 +514,11 @@ Commands executed:
 
 1. `.\gradlew.bat :app:testDebugUnitTest --no-configuration-cache`
 2. `.\scripts\build-debug.ps1`
-3. `.\scripts\install-debug.ps1 -Serial 003203627001082`
-4. `adb -s 003203627001082 shell am start ... --es command set_toy_setting --es toyId tuner --es key simulationMode --es value demo_all`
-5. `adb -s 003203627001082 shell am start ... --es command activate --es toyId tuner`
-6. `adb -s 003203627001082 logcat -d -s GlyphHub AndroidRuntime`
-7. `adb -s 003203627001082 logcat -d | findstr /i /c:"FATAL EXCEPTION"`
+3. `.\scripts\install-debug.ps1 -Serial <serial>`
+4. `adb -s <serial> shell am start ... --es command set_toy_setting --es toyId tuner --es key simulationMode --es value demo_all`
+5. `adb -s <serial> shell am start ... --es command activate --es toyId tuner`
+6. `adb -s <serial> logcat -d -s GlyphHub AndroidRuntime`
+7. `adb -s <serial> logcat -d | findstr /i /c:"FATAL EXCEPTION"`
 
 Results:
 
@@ -541,11 +540,11 @@ Commands executed:
 
 1. `.\gradlew.bat :app:testDebugUnitTest --no-configuration-cache`
 2. `.\scripts\build-debug.ps1`
-3. `.\scripts\install-debug.ps1 -Serial 003203627001082`
-4. `adb -s 003203627001082 shell pm grant com.pelikan.glyphhub android.permission.RECORD_AUDIO`
-5. `adb -s 003203627001082 shell am start ... --es command activate --es toyId tuner`
-6. `adb -s 003203627001082 logcat -d -s GlyphHub AndroidRuntime AudioRecord`
-7. `adb -s 003203627001082 logcat -d | findstr /i /c:"FATAL EXCEPTION"`
+3. `.\scripts\install-debug.ps1 -Serial <serial>`
+4. `adb -s <serial> shell pm grant com.pelikan.glyphhub android.permission.RECORD_AUDIO`
+5. `adb -s <serial> shell am start ... --es command activate --es toyId tuner`
+6. `adb -s <serial> logcat -d -s GlyphHub AndroidRuntime AudioRecord`
+7. `adb -s <serial> logcat -d | findstr /i /c:"FATAL EXCEPTION"`
 
 Results:
 
@@ -571,10 +570,10 @@ Commands executed:
 
 1. `.\gradlew.bat :app:testDebugUnitTest --no-configuration-cache`
 2. `.\scripts\build-debug.ps1`
-3. `.\scripts\install-debug.ps1 -Serial 003203627001082`
-4. `adb -s 003203627001082 shell am start ... --es command activate --es toyId school_class_timer`
-5. `adb -s 003203627001082 logcat -d -s GlyphHub AndroidRuntime`
-6. `adb -s 003203627001082 logcat -d | findstr /i /c:"FATAL EXCEPTION"`
+3. `.\scripts\install-debug.ps1 -Serial <serial>`
+4. `adb -s <serial> shell am start ... --es command activate --es toyId school_class_timer`
+5. `adb -s <serial> logcat -d -s GlyphHub AndroidRuntime`
+6. `adb -s <serial> logcat -d | findstr /i /c:"FATAL EXCEPTION"`
 
 Results:
 
@@ -598,10 +597,10 @@ Commands executed:
 
 1. `.\gradlew.bat :app:testDebugUnitTest --no-configuration-cache`
 2. `.\scripts\build-debug.ps1`
-3. `.\scripts\install-debug.ps1 -Serial 003203627001082`
-4. `adb -s 003203627001082 shell am start ... --es command activate --es toyId school_class_timer`
-5. `adb -s 003203627001082 logcat -d -s GlyphHub AndroidRuntime`
-6. `adb -s 003203627001082 logcat -d | findstr /i /c:"FATAL EXCEPTION"`
+3. `.\scripts\install-debug.ps1 -Serial <serial>`
+4. `adb -s <serial> shell am start ... --es command activate --es toyId school_class_timer`
+5. `adb -s <serial> logcat -d -s GlyphHub AndroidRuntime`
+6. `adb -s <serial> logcat -d | findstr /i /c:"FATAL EXCEPTION"`
 
 Results:
 
@@ -624,12 +623,12 @@ Commands executed:
 
 1. `.\gradlew.bat :app:testDebugUnitTest --no-configuration-cache`
 2. `.\scripts\build-debug.ps1`
-3. `.\scripts\install-debug.ps1 -Serial 003203627001082`
-4. `adb -s 003203627001082 shell pm grant com.pelikan.glyphhub android.permission.RECORD_AUDIO`
-5. `adb -s 003203627001082 shell am force-stop com.pelikan.glyphhub`
-6. `adb -s 003203627001082 shell am start ... --es command activate --es toyId tuner`
-7. `adb -s 003203627001082 logcat -d -s GlyphHub AndroidRuntime AudioRecord`
-8. `adb -s 003203627001082 logcat -d | findstr /i /c:"FATAL EXCEPTION"`
+3. `.\scripts\install-debug.ps1 -Serial <serial>`
+4. `adb -s <serial> shell pm grant com.pelikan.glyphhub android.permission.RECORD_AUDIO`
+5. `adb -s <serial> shell am force-stop com.pelikan.glyphhub`
+6. `adb -s <serial> shell am start ... --es command activate --es toyId tuner`
+7. `adb -s <serial> logcat -d -s GlyphHub AndroidRuntime AudioRecord`
+8. `adb -s <serial> logcat -d | findstr /i /c:"FATAL EXCEPTION"`
 
 Results:
 
@@ -655,10 +654,10 @@ Fifth follow-up tuning for power-connect ownership:
 Commands executed:
 
 1. `.\scripts\build-debug.ps1`
-2. `.\scripts\install-debug.ps1 -Serial 003203627001082`
-3. `adb -s 003203627001082 logcat -d -s GlyphHub`
-4. `adb -s 003203627001082 shell dumpsys battery`
-5. `adb -s 003203627001082 logcat -d | findstr /i /c:"FATAL EXCEPTION"`
+2. `.\scripts\install-debug.ps1 -Serial <serial>`
+3. `adb -s <serial> logcat -d -s GlyphHub`
+4. `adb -s <serial> shell dumpsys battery`
+5. `adb -s <serial> logcat -d | findstr /i /c:"FATAL EXCEPTION"`
 
 Results:
 
@@ -687,10 +686,10 @@ Commands executed:
 1. `jar tf app\libs\glyph-matrix-sdk-2.0.aar`
 2. `javap -classpath %TEMP%\glyphsdk_inspect\classes.jar -public com.nothing.ketchum.GlyphMatrixManager`
 3. `.\scripts\build-debug.ps1`
-4. `.\scripts\install-debug.ps1 -Serial 003203627001082`
-5. `adb -s 003203627001082 logcat -d -s GlyphHub`
-6. `adb -s 003203627001082 shell dumpsys battery`
-7. `adb -s 003203627001082 logcat -d | findstr /i /c:"FATAL EXCEPTION"`
+4. `.\scripts\install-debug.ps1 -Serial <serial>`
+5. `adb -s <serial> logcat -d -s GlyphHub`
+6. `adb -s <serial> shell dumpsys battery`
+7. `adb -s <serial> logcat -d | findstr /i /c:"FATAL EXCEPTION"`
 
 Results:
 
@@ -719,16 +718,16 @@ Research note:
 Commands executed:
 
 1. `.\scripts\build-debug.ps1`
-2. `.\scripts\install-debug.ps1 -Serial 003203627001082`
-3. `adb -s 003203627001082 shell date`
-4. `adb -s 003203627001082 shell run-as com.pelikan.glyphhub ... glyphhub_settings.xml`
-5. `adb -s 003203627001082 shell dumpsys battery unplug`
-6. `adb -s 003203627001082 shell dumpsys battery set usb 0`
-7. `adb -s 003203627001082 shell dumpsys battery set status 3`
-8. `adb -s 003203627001082 shell am force-stop com.pelikan.glyphhub`
-9. `adb -s 003203627001082 shell am start -n com.pelikan.glyphhub/.MainActivity -a com.pelikan.glyphhub.DEBUG_COMMAND --es command activate --es toyId school_class_timer`
-10. `adb -s 003203627001082 logcat -d -s GlyphHub`
-11. `adb -s 003203627001082 logcat -d | findstr /i /c:"FATAL EXCEPTION"`
+2. `.\scripts\install-debug.ps1 -Serial <serial>`
+3. `adb -s <serial> shell date`
+4. `adb -s <serial> shell run-as com.pelikan.glyphhub ... glyphhub_settings.xml`
+5. `adb -s <serial> shell dumpsys battery unplug`
+6. `adb -s <serial> shell dumpsys battery set usb 0`
+7. `adb -s <serial> shell dumpsys battery set status 3`
+8. `adb -s <serial> shell am force-stop com.pelikan.glyphhub`
+9. `adb -s <serial> shell am start -n com.pelikan.glyphhub/.MainActivity -a com.pelikan.glyphhub.DEBUG_COMMAND --es command activate --es toyId school_class_timer`
+10. `adb -s <serial> logcat -d -s GlyphHub`
+11. `adb -s <serial> logcat -d | findstr /i /c:"FATAL EXCEPTION"`
 
 Results:
 
@@ -753,12 +752,12 @@ Follow-up repair for exact calendar editor and true outer ring:
 Commands executed:
 
 1. `.\scripts\build-debug.ps1`
-2. `.\scripts\install-debug.ps1 -Serial 003203627001082`
-3. `adb -s 003203627001082 shell run-as com.pelikan.glyphhub ... glyphhub_settings.xml`
-4. `adb -s 003203627001082 shell am force-stop com.pelikan.glyphhub`
-5. `adb -s 003203627001082 shell am start -n com.pelikan.glyphhub/.MainActivity -a com.pelikan.glyphhub.DEBUG_COMMAND --es command activate --es toyId school_class_timer`
-6. `adb -s 003203627001082 logcat -d -s GlyphHub`
-7. `adb -s 003203627001082 logcat -d | findstr /i /c:"FATAL EXCEPTION"`
+2. `.\scripts\install-debug.ps1 -Serial <serial>`
+3. `adb -s <serial> shell run-as com.pelikan.glyphhub ... glyphhub_settings.xml`
+4. `adb -s <serial> shell am force-stop com.pelikan.glyphhub`
+5. `adb -s <serial> shell am start -n com.pelikan.glyphhub/.MainActivity -a com.pelikan.glyphhub.DEBUG_COMMAND --es command activate --es toyId school_class_timer`
+6. `adb -s <serial> logcat -d -s GlyphHub`
+7. `adb -s <serial> logcat -d | findstr /i /c:"FATAL EXCEPTION"`
 
 Results:
 
@@ -779,15 +778,15 @@ Eighth follow-up tuning for pre-connect system animation suppression:
 Commands executed:
 
 1. `.\scripts\build-debug.ps1`
-2. `.\scripts\install-debug.ps1 -Serial 003203627001082`
-3. `adb -s 003203627001082 shell dumpsys battery unplug`
-4. `adb -s 003203627001082 shell dumpsys battery set usb 0`
-5. `adb -s 003203627001082 shell dumpsys battery set status 3`
-6. `adb -s 003203627001082 shell dumpsys battery set usb 1`
-7. `adb -s 003203627001082 shell dumpsys battery set status 2`
-8. `adb -s 003203627001082 shell dumpsys battery reset`
-9. `adb -s 003203627001082 logcat -d -s GlyphHub`
-10. `adb -s 003203627001082 logcat -d | findstr /i /c:"FATAL EXCEPTION"`
+2. `.\scripts\install-debug.ps1 -Serial <serial>`
+3. `adb -s <serial> shell dumpsys battery unplug`
+4. `adb -s <serial> shell dumpsys battery set usb 0`
+5. `adb -s <serial> shell dumpsys battery set status 3`
+6. `adb -s <serial> shell dumpsys battery set usb 1`
+7. `adb -s <serial> shell dumpsys battery set status 2`
+8. `adb -s <serial> shell dumpsys battery reset`
+9. `adb -s <serial> logcat -d -s GlyphHub`
+10. `adb -s <serial> logcat -d | findstr /i /c:"FATAL EXCEPTION"`
 
 Results:
 
@@ -812,13 +811,13 @@ School Class Timer follow-up for exact grid timetable:
 Commands executed:
 
 1. `.\scripts\build-debug.ps1`
-2. `.\scripts\install-debug.ps1 -Serial 003203627001082`
-3. `adb -s 003203627001082 shell run-as com.pelikan.glyphhub ... glyphhub_settings.xml`
-4. `adb -s 003203627001082 shell am force-stop com.pelikan.glyphhub`
-5. `adb -s 003203627001082 shell am start -n com.pelikan.glyphhub/.MainActivity -a com.pelikan.glyphhub.DEBUG_COMMAND --es command activate --es toyId school_class_timer`
-6. `adb -s 003203627001082 logcat -d -s GlyphHub`
-7. `adb -s 003203627001082 logcat -d | findstr /i /c:"FATAL EXCEPTION"`
-8. `adb -s 003203627001082 shell dumpsys battery`
+2. `.\scripts\install-debug.ps1 -Serial <serial>`
+3. `adb -s <serial> shell run-as com.pelikan.glyphhub ... glyphhub_settings.xml`
+4. `adb -s <serial> shell am force-stop com.pelikan.glyphhub`
+5. `adb -s <serial> shell am start -n com.pelikan.glyphhub/.MainActivity -a com.pelikan.glyphhub.DEBUG_COMMAND --es command activate --es toyId school_class_timer`
+6. `adb -s <serial> logcat -d -s GlyphHub`
+7. `adb -s <serial> logcat -d | findstr /i /c:"FATAL EXCEPTION"`
+8. `adb -s <serial> shell dumpsys battery`
 
 Results:
 
@@ -851,13 +850,13 @@ Commands executed:
 
 1. `.\gradlew.bat :app:testDebugUnitTest`
 2. `.\scripts\build-debug.ps1`
-3. `.\scripts\install-debug.ps1 -Serial 003203627001082`
-4. `adb -s 003203627001082 shell am start ... --es command set_toy_setting --es key schedule --es value 'MON=00:06-00:09:HV:ALL;...'`
-5. `adb -s 003203627001082 shell am start ... --es command activate --es toyId school_class_timer`
-6. `adb -s 003203627001082 logcat -d -s GlyphHub`
-7. `adb -s 003203627001082 logcat -d | findstr /i /c:"FATAL EXCEPTION"`
-8. `adb -s 003203627001082 shell am start ... --es command set_toy_setting --es value '<real timetable>'`
-9. `adb -s 003203627001082 shell am start ... --es command activate --es toyId school_class_timer`
+3. `.\scripts\install-debug.ps1 -Serial <serial>`
+4. `adb -s <serial> shell am start ... --es command set_toy_setting --es key schedule --es value 'MON=00:06-00:09:HV:ALL;...'`
+5. `adb -s <serial> shell am start ... --es command activate --es toyId school_class_timer`
+6. `adb -s <serial> logcat -d -s GlyphHub`
+7. `adb -s <serial> logcat -d | findstr /i /c:"FATAL EXCEPTION"`
+8. `adb -s <serial> shell am start ... --es command set_toy_setting --es value '<real timetable>'`
+9. `adb -s <serial> shell am start ... --es command activate --es toyId school_class_timer`
 
 Results:
 
@@ -893,7 +892,7 @@ Commands executed:
 
 1. `.\gradlew.bat :app:testDebugUnitTest`
 2. `.\scripts\build-debug.ps1`
-3. `.\scripts\install-debug.ps1 -Serial 003203627001082`
+3. `.\scripts\install-debug.ps1 -Serial <serial>`
 4. Stable free-countdown visual retest.
 5. Stable class `HV` visual retest.
 6. Short warning haptic retest.
@@ -922,7 +921,7 @@ Commands executed:
 
 1. `.\gradlew.bat :app:testDebugUnitTest`
 2. `.\scripts\build-debug.ps1`
-3. `.\scripts\install-debug.ps1 -Serial 003203627001082`
+3. `.\scripts\install-debug.ps1 -Serial <serial>`
 4. Half-progress phone retest with `MON=00:14-00:34:HV:ALL`
 5. Restore real timetable and activate School Class Timer.
 
@@ -951,12 +950,12 @@ Commands executed:
 
 1. `.\gradlew.bat :app:testDebugUnitTest`
 2. `.\scripts\build-debug.ps1`
-3. `.\scripts\install-debug.ps1 -Serial 003203627001082`
-4. `adb -s 003203627001082 shell dumpsys battery reset`
-5. `adb -s 003203627001082 shell am start ... --es command activate --es toyId school_class_timer`
-6. `adb -s 003203627001082 shell dumpsys battery`
-7. `adb -s 003203627001082 logcat -d -s GlyphHub`
-8. `adb -s 003203627001082 logcat -d | findstr /i /c:"FATAL EXCEPTION"`
+3. `.\scripts\install-debug.ps1 -Serial <serial>`
+4. `adb -s <serial> shell dumpsys battery reset`
+5. `adb -s <serial> shell am start ... --es command activate --es toyId school_class_timer`
+6. `adb -s <serial> shell dumpsys battery`
+7. `adb -s <serial> logcat -d -s GlyphHub`
+8. `adb -s <serial> logcat -d | findstr /i /c:"FATAL EXCEPTION"`
 
 Results:
 
@@ -978,10 +977,10 @@ Seventh follow-up tuning for double flash at pulse floor:
 Commands executed:
 
 1. `.\scripts\build-debug.ps1`
-2. `.\scripts\install-debug.ps1 -Serial 003203627001082`
-3. `adb -s 003203627001082 logcat -d -s GlyphHub`
-4. `adb -s 003203627001082 shell dumpsys battery`
-5. `adb -s 003203627001082 logcat -d | findstr /i /c:"FATAL EXCEPTION"`
+2. `.\scripts\install-debug.ps1 -Serial <serial>`
+3. `adb -s <serial> logcat -d -s GlyphHub`
+4. `adb -s <serial> shell dumpsys battery`
+5. `adb -s <serial> logcat -d | findstr /i /c:"FATAL EXCEPTION"`
 
 Results:
 
@@ -1006,10 +1005,10 @@ Commands executed:
 
 1. `.\gradlew.bat :app:testDebugUnitTest --no-configuration-cache`
 2. `.\scripts\build-debug.ps1`
-3. `.\scripts\install-debug.ps1 -Serial 003203627001082`
-4. `adb -s 003203627001082 shell pm grant com.pelikan.glyphhub android.permission.RECORD_AUDIO`
-5. `adb -s 003203627001082 shell am start ... --es command activate --es toyId tuner`
-6. `adb -s 003203627001082 logcat -d -s GlyphHub AndroidRuntime`
+3. `.\scripts\install-debug.ps1 -Serial <serial>`
+4. `adb -s <serial> shell pm grant com.pelikan.glyphhub android.permission.RECORD_AUDIO`
+5. `adb -s <serial> shell am start ... --es command activate --es toyId tuner`
+6. `adb -s <serial> logcat -d -s GlyphHub AndroidRuntime`
 
 Results:
 
@@ -1039,11 +1038,11 @@ Commands executed:
 
 1. `.\gradlew.bat :app:testDebugUnitTest --no-configuration-cache`
 2. `.\scripts\build-debug.ps1`
-3. `.\scripts\install-debug.ps1 -Serial 003203627001082`
-4. `adb -s 003203627001082 shell pm grant com.pelikan.glyphhub android.permission.RECORD_AUDIO`
-5. `adb -s 003203627001082 shell am start ... --es command activate --es toyId tuner`
-6. `adb -s 003203627001082 logcat -d -s GlyphHub AndroidRuntime AudioRecord`
-7. `adb -s 003203627001082 logcat -d | findstr /i /c:"FATAL EXCEPTION"`
+3. `.\scripts\install-debug.ps1 -Serial <serial>`
+4. `adb -s <serial> shell pm grant com.pelikan.glyphhub android.permission.RECORD_AUDIO`
+5. `adb -s <serial> shell am start ... --es command activate --es toyId tuner`
+6. `adb -s <serial> logcat -d -s GlyphHub AndroidRuntime AudioRecord`
+7. `adb -s <serial> logcat -d | findstr /i /c:"FATAL EXCEPTION"`
 
 Results:
 
@@ -1068,10 +1067,10 @@ Commands executed:
 
 1. `.\gradlew.bat :app:testDebugUnitTest --no-configuration-cache`
 2. `.\scripts\build-debug.ps1`
-3. `.\scripts\install-debug.ps1 -Serial 003203627001082`
-4. `adb -s 003203627001082 shell am start ... --es command activate --es toyId tuner`
-5. `adb -s 003203627001082 logcat -d -s GlyphHub AndroidRuntime AudioRecord`
-6. `adb -s 003203627001082 logcat -d | findstr /i /c:"FATAL EXCEPTION"`
+3. `.\scripts\install-debug.ps1 -Serial <serial>`
+4. `adb -s <serial> shell am start ... --es command activate --es toyId tuner`
+5. `adb -s <serial> logcat -d -s GlyphHub AndroidRuntime AudioRecord`
+6. `adb -s <serial> logcat -d | findstr /i /c:"FATAL EXCEPTION"`
 
 Results:
 
@@ -1096,12 +1095,12 @@ Commands executed:
 
 1. `.\gradlew.bat :app:testDebugUnitTest --no-configuration-cache`
 2. `.\scripts\build-debug.ps1`
-3. `.\scripts\install-debug.ps1 -Serial 003203627001082`
-4. `adb -s 003203627001082 shell pm grant com.pelikan.glyphhub android.permission.RECORD_AUDIO`
-5. `adb -s 003203627001082 shell am start ... --es command set_toy_setting --es toyId tuner --es key simulationMode --es value demo_sweep`
-6. `adb -s 003203627001082 shell am start ... --es command activate --es toyId tuner`
-7. `adb -s 003203627001082 shell am start ... --es command set_toy_setting --es toyId tuner --es key simulationMode --es value demo_lock`
-8. `adb -s 003203627001082 logcat -d | findstr /i /c:"FATAL EXCEPTION"`
+3. `.\scripts\install-debug.ps1 -Serial <serial>`
+4. `adb -s <serial> shell pm grant com.pelikan.glyphhub android.permission.RECORD_AUDIO`
+5. `adb -s <serial> shell am start ... --es command set_toy_setting --es toyId tuner --es key simulationMode --es value demo_sweep`
+6. `adb -s <serial> shell am start ... --es command activate --es toyId tuner`
+7. `adb -s <serial> shell am start ... --es command set_toy_setting --es toyId tuner --es key simulationMode --es value demo_lock`
+8. `adb -s <serial> logcat -d | findstr /i /c:"FATAL EXCEPTION"`
 
 Results:
 

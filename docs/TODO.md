@@ -7,7 +7,7 @@ This backlog reflects the fresh 2026-06-06 audit/build/device baseline, not the 
 - [x] `:app:compileDebugKotlin` passes.
 - [x] `assembleDebug` passes.
 - [x] `todos.json` parses cleanly.
-- [x] Debug APK installs on Nothing `A069P` / `FroggerPro` (`003203627001082`).
+- [x] Debug APK installs on Nothing Phone (4a) Pro (`A069P` / `FroggerPro`).
 - [x] `MainActivity` launches without an immediate crash in filtered logcat.
 - [x] Official Nothing Glyph Matrix integration, fake fallback, and the one-service architecture remain intact.
 - [x] The launcher widget still uses one centered preview plus five explicit tap zones instead of the removed stacked-preview path.
