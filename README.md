@@ -152,3 +152,6 @@ What is still open is equally explicit:
 ## Public Note
 
 This is an independent project targeting the Nothing Glyph Matrix Toy ecosystem. I describe the current state as it is: substantial, usable, and already validated in important places, but not finished pretending to be finished.
+## License
+
+MIT, see [LICENSE](LICENSE). Adapted third-party sources and their licenses are listed in [docs/THIRD_PARTY_NOTICES.md](docs/THIRD_PARTY_NOTICES.md). The Nothing Glyph Matrix SDK AAR is not part of this repository and is covered by its own terms.
