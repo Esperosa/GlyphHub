@@ -155,3 +155,7 @@ This is an independent project targeting the Nothing Glyph Matrix Toy ecosystem.
 ## License
 
 MIT, see [LICENSE](LICENSE). Adapted third-party sources and their licenses are listed in [docs/THIRD_PARTY_NOTICES.md](docs/THIRD_PARTY_NOTICES.md). The Nothing Glyph Matrix SDK AAR is not part of this repository and is covered by its own terms.
+
+---
+
+Autor: [Jiří Pelikán](https://jirkapelikan.cz/projekty/glyphhub/) · [jirkapelikan.cz](https://jirkapelikan.cz)
